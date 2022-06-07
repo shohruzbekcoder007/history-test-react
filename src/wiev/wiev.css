@@ -1,0 +1,141 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ul li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+.man-wrappper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-container {
+    width: calc(100% - 280px);
+    height: 100vh;
+    background-color: green;
+    overflow: auto;
+}
+
+/* sidebar  */
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background-color: red;
+    overflow: auto;
+}
+
+.sidebar-curtain {
+    display: none;
+}
+
+
+
+@media (max-width: 900px) {
+    .main-container {
+        width: 100%;
+    }
+
+    /* sidebar  */
+    .sidebar {
+        /* display: none; */
+        animation: 1s ease-in 1s both running sidebar-close;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        background-color: transparent;
+    }
+
+    .sidebar-container {
+        position: fixed;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .sidebar-menu {
+        width: 280px;
+        max-height: 100vh;
+        background-color: red;
+        overflow: auto;
+        min-height: 100vh;
+    }
+
+    .sidebar-curtain {
+        display: block;
+        width: calc(100% - 280px);
+        min-height: 100vh;
+        background-color: rgba(34, 33, 33, 0.521);
+    }
+
+    .open-sidebar {
+        animation: 1s ease-in 1s both running sidebar-open;
+    }
+
+    .close-sidebar {
+        animation: 1s ease-in 1s both running sidebar-close;
+    }
+}
+
+
+@keyframes sidebar-open {
+    from {
+        display: block;
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes sidebar-close {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+        display: none;
+    }
+}
