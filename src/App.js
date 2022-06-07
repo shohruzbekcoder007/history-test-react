@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import SignIn from "./components/SignIn"
 import SignUp from "./components/SignUp"
 import {
@@ -7,21 +7,21 @@ import {
   Navigate
 } from "react-router-dom"
 import Main from "./components/Main"
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { green } from '@mui/material/colors'
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: green[500],
-      contrastText: "#fff"
-    },
-  },
-});
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import themeDark from './theme/theme_dark'
+import themeLight from './theme/theme_light'
 
 function App() {
+
+  const [dark, setDark] = useState(false)
+  const changeTheme = (theme) => {
+    setDark(theme)
+  }
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={dark?themeDark:themeLight}>
+      <CssBaseline />
       <Routes>
           <Route path="login" element={<SignIn/>} />
           <Route path="reg" element={<SignUp/>} />

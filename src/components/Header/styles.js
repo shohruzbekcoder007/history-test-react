@@ -48,4 +48,5 @@ export const StyleSerchInput = styled.input`
     font-weight: bold;
     font-size: 18px;
     transform: translateY(-5px);
+    background-color: transparent;
 `;

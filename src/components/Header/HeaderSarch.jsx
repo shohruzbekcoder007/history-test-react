@@ -2,6 +2,12 @@ import React from 'react'
 import { StyleHeaderSarch, StyleHeaderSarchContainer, StyleSerchInput } from './styles'
 import SearchIcon from '@mui/icons-material/Search'
 import Button from '@mui/material/Button'
+import { styled } from '@mui/material/styles';
+
+const SerchInput = styled(StyleSerchInput)(({ theme }) => ({
+  color: theme.palette.mode === "dark"?"#fff":"#000",
+  
+}));
 
 export default function HeaderSarch({open, setOpen}) {
 
@@ -14,7 +20,7 @@ export default function HeaderSarch({open, setOpen}) {
       <StyleHeaderSarchContainer>
           <div>
             <SearchIcon/>
-            <StyleSerchInput placeholder='Search'/>
+            <SerchInput placeholder='Search'/>
           </div>
         <Button
           variant="contained"
