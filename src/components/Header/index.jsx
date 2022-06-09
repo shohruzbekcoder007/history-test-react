@@ -7,6 +7,7 @@ import Badge from '../Badge'
 import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import HeaderSarch from './HeaderSarch'
+import ThemeMenu from '../ThemeMenu'
 
 export default function Header() {
 
@@ -25,6 +26,7 @@ export default function Header() {
       </StyledHeaderLeft>
       <StyledHeaderRight>
         <Stack direction="row" spacing={1}>
+          <ThemeMenu/>
           <Language/>
           <Badge/>
           <AccountMenu/>

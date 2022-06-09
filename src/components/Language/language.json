@@ -1,18 +1,22 @@
 [
     {
         "name": "O'zbek",
-        "abbreviation": "uz"
+        "abbreviation": "uz",
+        "flag": "../../wiev/flag_uzb.png"
     },
     {
         "name": "Русский",
-        "abbreviation": "ru"
+        "abbreviation": "ru",
+        "flag": "../../wiev/flag_russia.png"
     },
     {
         "name": "English",
-        "abbreviation": "eng"
+        "abbreviation": "eng",
+        "flag": "../../wiev/flag_usa.png"
     },
     {
         "name": "Ўзбек",
-        "abbreviation": "uzc"
+        "abbreviation": "uzc",
+        "flag": "../../wiev/flag_uzb.png"
     }
 ]

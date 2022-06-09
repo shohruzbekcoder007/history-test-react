@@ -1,15 +1,23 @@
-import * as React from 'react';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import Avatar from '@mui/material/Avatar';
+import * as React from 'react'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import IconButton from '@mui/material/IconButton'
+import Avatar from '@mui/material/Avatar'
+import listLanguage from './language.json'
+import { useDispatch } from 'react-redux'
+import { setLanguage } from '../../redux/action/languageActions'
 
 export default function Language() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const dispatch = useDispatch()
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -38,9 +46,18 @@ export default function Language() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        {
+          listLanguage.map(elem => {
+            return <MenuItem key={elem.abbreviation} 
+              onClick={(event) => {
+                dispatch(setLanguage(elem.abbreviation)); 
+                handleClose(event)
+              }}
+            >
+              {elem.name}
+            </MenuItem>
+          })
+        }
       </Menu>
     </div>
   );

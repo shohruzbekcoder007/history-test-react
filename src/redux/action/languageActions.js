@@ -1,8 +1,8 @@
-import { ActionTypes } from './../contants/action-types'
+import { ActionTypes } from '../contants/action-types'
 
-export const setProducts = (products) => {
+export const setLanguage = (language) => {
     return {
-        type: ActionTypes.SET_THEME,
-        payload: products
+        type: ActionTypes.SET_LANGUAGE,
+        payload: language
     }
 }

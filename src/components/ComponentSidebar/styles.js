@@ -49,6 +49,9 @@ export const SidebarCurtain = styled.div`
 export const StyleLogoContainer = styled.div`
     width: 100%;
     height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const StyleUser = styled.div`

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import SignIn from "./components/SignIn"
 import SignUp from "./components/SignUp"
 import {
@@ -9,18 +9,14 @@ import {
 import Main from "./components/Main"
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import themeDark from './theme/theme_dark'
-import themeLight from './theme/theme_light'
+import { useSelector } from 'react-redux'
 
 function App() {
 
-  const [dark, setDark] = useState(false)
-  const changeTheme = (theme) => {
-    setDark(theme)
-  }
+  const theme = useSelector(state => state.theme)
 
   return (
-    <ThemeProvider theme={dark?themeDark:themeLight}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
           <Route path="login" element={<SignIn/>} />
@@ -33,5 +29,6 @@ function App() {
 }
 
 // https://mui.com/store/previews/minimal-dashboard-free/
+// https://editor.webself.net/review/3242867f645e4fd78593befbf0636272
 
 export default App;

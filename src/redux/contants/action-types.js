@@ -1,3 +1,5 @@
 export const ActionTypes = {
-    SET_THEME: "SET_THEME",
+    DARK_THEME: "DARK_THEME",
+    LIGHT_THEME: "DARK_THEME",
+    SET_LANGUAGE: "SET_LANGUAGE"
 }

@@ -28,7 +28,9 @@ export default function ComponentSidebar() {
     <Sidebar>
       <SidebarContainer>
         <SidebarMenu>
-          <StyleLogoContainer></StyleLogoContainer>
+          <StyleLogoContainer>
+            <img src={require("../../wiev/mylogo.png")} alt="logo"/>
+          </StyleLogoContainer>
           <StyleUser>
             <StyleChip
               sx={{ height: 60, borderRadius: "8px", fontSize: "16px" }}
