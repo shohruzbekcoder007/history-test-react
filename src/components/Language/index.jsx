@@ -1,15 +1,18 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
 import Avatar from '@mui/material/Avatar'
 import listLanguage from './language.json'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setLanguage } from '../../redux/action/languageActions'
+import flags from './flags'
 
 export default function Language() {
 
-  const [anchorEl, setAnchorEl] = React.useState(null)
+  const language = useSelector(state => state.language)
+
+  const [anchorEl, setAnchorEl] = useState(null)
   const dispatch = useDispatch()
 
   const open = Boolean(anchorEl);
@@ -34,7 +37,7 @@ export default function Language() {
         <Avatar 
           alt="language"
           sx={{ width: 24, height: 24 }}
-          src={require("../../wiev/flag_uzb.png")}
+          src={flags[language]}
         />
       </IconButton>
       <Menu

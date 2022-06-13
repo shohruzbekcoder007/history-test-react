@@ -8,5 +8,9 @@ export default createTheme({
         main: green[500],
         contrastText: "#fff"
       },
+      background: {
+        paper: "rgb(249, 250, 251)",
+        default: "rgb(249, 250, 251)"
+      },
     },
   });

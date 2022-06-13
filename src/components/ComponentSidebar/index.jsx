@@ -8,6 +8,7 @@ import {
   StyleUser,
   StyleChip,
   StyleUserAvatar,
+  SidebarImageContainer
 } from "./styles";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -41,30 +42,47 @@ export default function ComponentSidebar() {
           <List>
             <ListItem disablePadding>
               <ListItemButton
+                sx={{ borderRadius: "8px", margin: "0 5px" }}
                 selected={selectedIndex === 0}
                 onClick={(event) => handleListItemClick(event, 0)}
               >
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Inbox" />
+                <ListItemText primary="Kurslarim" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton
+                sx={{ borderRadius: "8px", margin: "0 5px" }}
                 selected={selectedIndex === 1}
                 onClick={(event) => handleListItemClick(event, 1)}
               >
                 <ListItemIcon>
                   <DraftsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Drafts" />
+                <ListItemText primary="O'quvchilarim" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton
+                sx={{ borderRadius: "8px", margin: "0 5px" }}
+                selected={selectedIndex === 3}
+                onClick={(event) => handleListItemClick(event, 3)}
+              >
+                <ListItemIcon>
+                  <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Natijalar" />
               </ListItemButton>
             </ListItem>
           </List>
         </SidebarMenu>
         <SidebarCurtain />
       </SidebarContainer>
+      <SidebarImageContainer>
+        <img alt="image1" src={require('./../../wiev/education.png')}/>
+      </SidebarImageContainer>
     </Sidebar>
   );
 }

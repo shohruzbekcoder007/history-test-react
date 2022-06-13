@@ -7,6 +7,9 @@ export const Sidebar = styled.div`
     height: 100vh;
     overflow: auto;
     border-right: 1px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     @media (max-width: 900px){
         width: 100%;
         height: 100vh;
@@ -22,6 +25,16 @@ export const SidebarContainer = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+`;
+
+export const SidebarImageContainer = styled.div`
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    img {
+        display: inline-block;
     }
 `;
 
