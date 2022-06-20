@@ -10,7 +10,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { useDispatch } from 'react-redux';
-import { setDarkTheme, setLightTheme } from '../../redux/action/themeActions';
+import { setDarkTheme, setLightTheme } from '../../../redux/action/themeActions';
 
 const StyledMenu = styled((props) => (
   <Menu

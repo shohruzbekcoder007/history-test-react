@@ -1,0 +1,20 @@
+{
+    "courses": {
+        "uz": "Kurslarim",
+        "ru": "Мои курсы",
+        "eng": "My courses",
+        "uzc": "Курсларим"
+    },
+    "students": {
+        "uz": "O'quvchilarim",
+        "ru": "Мои студенты",
+        "eng": "My students",
+        "uzc": "Ўқувчиларим"
+    },
+    "results": {
+        "uz": "Natijalar",
+        "ru": "Полученные результаты",
+        "eng": "Results",
+        "uzc": "Натижалар"
+    }
+}

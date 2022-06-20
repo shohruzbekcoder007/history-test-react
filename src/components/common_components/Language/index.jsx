@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton'
 import Avatar from '@mui/material/Avatar'
 import listLanguage from './language.json'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLanguage } from '../../redux/action/languageActions'
+import { setLanguage } from '../../../redux/action/languageActions'
 import flags from './flags'
 
 export default function Language() {

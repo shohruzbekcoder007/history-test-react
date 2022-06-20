@@ -1,7 +1,7 @@
 import { ActionTypes } from "../contants/action-types"
-import theme_dark from '../../theme/theme_dark'
+import theme_light from '../../theme/theme_light'
 
-const initialDarkTheme = theme_dark
+const initialDarkTheme = theme_light
 
 export const themeReducer = (state = initialDarkTheme, { type, payload }) => {
     switch (type) {

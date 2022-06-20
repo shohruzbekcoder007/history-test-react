@@ -1,0 +1,14 @@
+{
+    "courses": {
+        "uz": "Kurslarim",
+        "ru": "Мои курсы",
+        "eng": "My courses",
+        "uzc": "Курсларим"
+    },
+    "results": {
+        "uz": "Natijalar",
+        "ru": "Полученные результаты",
+        "eng": "Results",
+        "uzc": "Натижалар"
+    }
+}

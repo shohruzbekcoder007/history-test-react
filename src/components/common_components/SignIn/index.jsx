@@ -1,32 +1,52 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-// import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as React from 'react'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import TextField from '@mui/material/TextField'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
 import { Link } from 'react-router-dom'
-
-
-const theme = createTheme();
+import axios from '../../../baseUrl'
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../../redux/action/userActions'
 
 export default function SignIn() {
+
+  let navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    axios.post(
+      `/user/login/`,
+      {
+        email: data.get('email'),
+        password: data.get('password'),
+      }
+    )
+    .then((response) => {
+      sessionStorage.setItem('x-auth-token', response.headers['x-auth-token'])
+      dispatch(setUser(response.data))
+      if(response.data.isAdmin){
+        navigate('/teacher')
+      }
+      if(!response.data.isAdmin){
+        navigate('/student')
+      }
+    })
+    .catch((error) => {
+      console.log({ errorMessage: error.toString() });
+      console.error("There was an error!", error);
     });
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -87,6 +107,6 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+    </>
   );
 }

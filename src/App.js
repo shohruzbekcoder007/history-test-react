@@ -1,31 +1,43 @@
-import React from "react"
-import SignIn from "./components/SignIn"
-import SignUp from "./components/SignUp"
-import {
-  Routes,
-  Route,
-  Navigate
-} from "react-router-dom"
-import Main from "./components/Main"
-import { ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import { useSelector } from 'react-redux'
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import Main from "./components/common_components/Main";
+import SignIn from "./components/common_components/SignIn";
+import SignUp from "./components/common_components/SignUp";
+import Courses from "./components/teacher_components/Courses";
+import StudentMain from "./components/student_components/Main";
+import TeacherMain from "./components/teacher_components/Main";
+import Students from "./components/teacher_components/Students";
 
 function App() {
-
-  const theme = useSelector(state => state.theme)
+  const theme = useSelector((state) => state.theme);
+  const user = useSelector((state) => state.user);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-          <Route path="login" element={<SignIn/>} />
-          <Route path="reg" element={<SignUp/>} />
-          <Route path="/" element={<Main/>} />
-          <Route path="*" element={<Navigate to="/login"/>}/>
+        {sessionStorage.getItem("x-auth-token") && (
+          <Route path="/" element={<Main />}>
+            <Route path="student" element={<StudentMain/>}>
+              <Route index element={<Courses />} />
+              <Route path="nimadir" element={<p>nimadir</p>} />
+            </Route>
+            <Route path="teacher" element={<TeacherMain />}>
+              <Route index element={<Courses />} />
+              <Route path="students" element={<Students/>} />
+              <Route path="natijalar" element={<p>natijalar</p>} />
+            </Route>
+          </Route>
+        )}
+        <Route path="login" element={<SignIn />} />
+        <Route path="reg" element={<SignUp />} />
+        <Route path="*" element={<Navigate to={user ? "/" : "login"} />} />
       </Routes>
     </ThemeProvider>
-  )
+  );
 }
 
 // https://mui.com/store/previews/minimal-dashboard-free/
