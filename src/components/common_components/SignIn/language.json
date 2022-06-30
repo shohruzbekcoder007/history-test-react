@@ -1,0 +1,32 @@
+{
+    "sign_in": {
+        "uz": "Tizimga kirish",
+        "ru": "Авторизоваться",
+        "eng": "Sign in",
+        "uzc": "Тизимга кириш"
+    },
+    "sign_in_btn": {
+        "uz": "Kirish",
+        "ru": "Войти",
+        "eng": "Enter",
+        "uzc": "Кириш"
+    },
+    "email_address": {
+        "uz": "Elektron Pochta",
+        "ru": "Эл. адрес",
+        "eng": "Email Address",
+        "uzc": "Електрон Почта"
+    },
+    "password": {
+        "uz": "Parol",
+        "ru": "Пароль",
+        "eng": "Password",
+        "uzc": "Парол"
+    },
+    "link": {
+        "uz": "Hisobingiz yo'qmi? Ro'yxatdan o'tish",
+        "ru": "У вас нет аккаунта? Зарегистрироваться",
+        "eng": "Don't have an account? Sign Up",
+        "uzc": "Ҳисобингиз ёқми? Рўйхатдан ўтиш"
+    }
+}

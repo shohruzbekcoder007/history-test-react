@@ -13,17 +13,20 @@ import axios from '../../../baseUrl'
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import { setUser } from '../../../redux/action/userActions'
+import { user_login } from '../../../API_urls'
+import listLanguage from './language.json'
 
 export default function SignIn() {
 
   let navigate = useNavigate()
   const dispatch = useDispatch()
+  const language = "ru"
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     axios.post(
-      `/user/login/`,
+      user_login,
       {
         email: data.get('email'),
         password: data.get('password'),
@@ -46,22 +49,22 @@ export default function SignIn() {
   };
 
   return (
-    <>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            boxShadow: 3,
+            padding: 2,
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {listLanguage.sign_in[language]}
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -69,7 +72,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label={listLanguage.email_address[language]}
               name="email"
               autoComplete="email"
               autoFocus
@@ -79,7 +82,7 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label={listLanguage.password[language]}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -90,7 +93,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              {listLanguage.sign_in_btn[language]}
             </Button>
             <Grid container>
               <Grid item xs>
@@ -100,13 +103,12 @@ export default function SignIn() {
               </Grid>
               <Grid item>
                 <Link to="/reg" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {listLanguage.link[language]}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
       </Container>
-    </>
   );
 }

@@ -1,0 +1,44 @@
+{
+    "sign_up": {
+        "uz": "Ro'yxatdan o'tish",
+        "ru": "Подписаться",
+        "eng": "Sign up",
+        "uzc": "Рўйхатдан ўтиш"
+    },
+    "sign_up_btn": {
+        "uz": "Kirish",
+        "ru": "Войти",
+        "eng": "Enter",
+        "uzc": "Кириш"
+    },
+    "user_name": {
+        "uz": "Foydalanuvchi nomi",
+        "ru": "Имя пользователя",
+        "eng": "User Name",
+        "uzc": "Фойдаланувчи номи"
+    },
+    "password": {
+        "uz": "Parol",
+        "ru": "Пароль",
+        "eng": "Password",
+        "uzc": "Парол"
+    },
+    "link": {
+        "uz": "Hisobingiz bormi? Tizimga kirish",
+        "ru": "У вас уже есть аккаунт? Войти",
+        "eng": "Already have an account? Sign in",
+        "uzc": "Ҳисобингиз борми? Тизимга кириш"
+    },
+    "email_address": {
+        "uz": "Elektron Pochta",
+        "ru": "Эл. адрес",
+        "eng": "Email Address",
+        "uzc": "Електрон Почта"
+    },
+    "status": {
+        "uz": "Men o'qituvchiman",
+        "ru": "Я преподаватель",
+        "eng": "I am a teacher",
+        "uzc": "Мен ўқитувчиман"
+    }
+}

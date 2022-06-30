@@ -48,7 +48,7 @@ function CustomLink({ children, to, ...props }) {
         <ListItem disablePadding>
           <ListItemButton
             sx={{ borderRadius: "8px", margin: "0 5px" }}
-            selected={match}
+            selected={match?.pattern.end}
           >
             {children}
           </ListItemButton>

@@ -27,12 +27,17 @@ export default function ComponentSidebar() {
           <StyleUser>
             <StyleChip
               sx={{ height: 60, borderRadius: "8px", fontSize: "16px" }}
-              avatar={<StyleUserAvatar>M</StyleUserAvatar>}
+              avatar={
+                <StyleUserAvatar
+                  alt="Remy Sharp"
+                  src={user?.profile?.image_url}
+                />
+              }
               label={user?.name}
             />
           </StyleUser>
-          {user?.isAdmin === true && <TeacherSidebarList/>}
-          {user?.isAdmin === false && <StudentSidebarList/>}
+          {user?.isAdmin === true && <TeacherSidebarList />}
+          {user?.isAdmin === false && <StudentSidebarList />}
         </SidebarMenu>
         <SidebarCurtain />
       </SidebarContainer>

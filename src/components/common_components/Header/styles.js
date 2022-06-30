@@ -13,6 +13,7 @@ export const StyleHeader = styled.div`
     justify-content: space-between;
     padding: 0 30px;
     z-index: 1;
+    box-shadow: 1px 0px 96px #ccc;
 `;
 
 export const StyledHeaderLeft = styled.div`

@@ -10,6 +10,7 @@ export const Sidebar = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 1px 0px 96px #ccc;
     @media (max-width: 900px){
         width: 100%;
         height: 100vh;

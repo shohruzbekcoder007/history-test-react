@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../../redux/action/userActions";
-import axios from "../../../baseUrl";
+import React, { useEffect } from "react"
+import { Outlet, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { setUser } from "../../../redux/action/userActions"
+import axios from "../../../baseUrl"
+import { user_info } from '../../../API_urls'
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -11,9 +12,8 @@ export default function Main() {
   useEffect(() => {
     sessionStorage.getItem("x-auth-token") &&
       axios
-        .post(
-          `/user/info/`,
-          {},
+        .get(
+          user_info,
           {
             headers: {
               "x-auth-token": sessionStorage.getItem("x-auth-token"),
