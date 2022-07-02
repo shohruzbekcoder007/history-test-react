@@ -1,7 +1,11 @@
 import React from 'react'
+import Course from '../Course'
 
 export default function Courses() {
   return (
-    <div>Courses teacher</div>
+    <div>
+      <p>Courses teacher</p>
+      <Course/>
+    </div>
   )
 }

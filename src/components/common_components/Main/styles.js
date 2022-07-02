@@ -40,3 +40,7 @@ export const MainContainer = styled.div`
         width: 100%;
     }
 `;
+
+export const RouterContainer = styled.div`
+    padding: 20px;
+`
