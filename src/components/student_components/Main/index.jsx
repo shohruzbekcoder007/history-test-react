@@ -3,7 +3,9 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/action/userActions";
 import axios from "../../../baseUrl";
-import { user_info } from '../../../API_urls'
+import { user_info, host } from '../../../API_urls'
+import { setSocket } from "../../../redux/action/socketAction"
+import { io } from "socket.io-client";
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -26,6 +28,12 @@ export default function Main() {
             response.headers["x-auth-token"]
           );
           dispatch(setUser(response.data));
+
+          //create socket
+          const socket = io(host);
+          dispatch(setSocket(socket));
+          socket.emit('add-user', {userId: response.data._id, status: response.data.isAdmin})
+
           if (response.data.isAdmin === true) {
             navigate("/login");
           }

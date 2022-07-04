@@ -1,13 +1,13 @@
 import { ActionTypes } from "../contants/action-types"
 
-const initialUser = null
+const initialLanguage = null
 
-export const userReducer = (state = initialUser, { type, payload }) => {
+export const socketReducer = (state = initialLanguage, { type, payload }) => {
     switch (type) {
 
-        case ActionTypes.SET_USER:
+        case ActionTypes.SET_SOCKET:
             return payload
-
+    
         default:
             return state;
 

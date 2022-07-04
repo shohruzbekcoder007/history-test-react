@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Badge from '@mui/material/Badge';
 import Tooltip from '@mui/material/Tooltip';
 import Popover from '@mui/material/Popover';
@@ -6,16 +6,23 @@ import MailIcon from '@mui/icons-material/Mail';
 import IconButton from "@mui/material/IconButton";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { io } from "socket.io-client";
 import {
   StyleNotification,
   StyleNotificationBody,
   StyleNotificationFooter,
   StyleNotificationHeader
 } from "./styles";
+import { useSelector } from "react-redux";
 
 export default function SimpleBadge() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  
+  const [anchorEl, setAnchorEl] = useState(null);
+  const socket = useSelector((state) => state.socket);
+
+  socket?.on('new-msg', (msg) => {
+    console.log(msg)
+  })
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,11 +34,6 @@ export default function SimpleBadge() {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-  
-  useState(() => {
-    const socket = io("http://localhost:8080");
-    socket.emit('add-user',12)
-  },[])
 
   return (
     <div>
