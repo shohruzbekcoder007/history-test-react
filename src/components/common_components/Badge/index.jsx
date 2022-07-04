@@ -23,7 +23,6 @@ export default function SimpleBadge() {
     console.log(msg)
   })
 
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
