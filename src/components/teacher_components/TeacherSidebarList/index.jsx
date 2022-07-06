@@ -4,11 +4,12 @@ import ListItem from "@mui/material/ListItem"
 import ListItemButton from "@mui/material/ListItemButton"
 import ListItemIcon from "@mui/material/ListItemIcon"
 import ListItemText from "@mui/material/ListItemText"
-import InboxIcon from "@mui/icons-material/Inbox"
-import DraftsIcon from "@mui/icons-material/Drafts"
 import { Link, useMatch, useResolvedPath, } from "react-router-dom"
 import listLanguage from './language.json'
 import { useSelector } from 'react-redux'
+import GroupsIcon from '@mui/icons-material/Groups'
+import CastForEducationIcon from '@mui/icons-material/CastForEducation'
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 
 export default function TeacherSidebarList() {
 
@@ -18,19 +19,19 @@ export default function TeacherSidebarList() {
     <List>
       <CustomLink to={'/teacher'}>
         <ListItemIcon>
-          <InboxIcon />
+          <CastForEducationIcon />
         </ListItemIcon>
         <ListItemText primary={listLanguage.courses[language]} />
       </CustomLink>
       <CustomLink to={'/teacher/students'}>
         <ListItemIcon>
-          <DraftsIcon />
+          <GroupsIcon />
         </ListItemIcon>
         <ListItemText primary={listLanguage.students[language]} />
       </CustomLink>
       <CustomLink to={'/teacher/natijalar'}>
         <ListItemIcon>
-          <DraftsIcon />
+          <AppRegistrationIcon />
         </ListItemIcon>
         <ListItemText primary={listLanguage.results[language]} />
       </CustomLink>

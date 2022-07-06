@@ -6,13 +6,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CourseSrc from "../CourseSrc";
 import CourseStudents from "../CourseStudents";
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -34,13 +27,13 @@ export default function Course() {
       </Typography>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid item xs={6} md={8}>
+          <Grid item xs={12} md={6} lg={8}>
             Manbalar
             <Item>
               <CourseSrc />
             </Item>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={12} md={6} lg={4}>
             students
             <Item>
               <CourseStudents />

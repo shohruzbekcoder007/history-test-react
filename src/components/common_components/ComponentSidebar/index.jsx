@@ -41,9 +41,9 @@ export default function ComponentSidebar() {
         </SidebarMenu>
         <SidebarCurtain />
       </SidebarContainer>
-      <SidebarImageContainer>
+      {/* <SidebarImageContainer>
         <img alt="image1" src={require("./../../../images/education.png")} />
-      </SidebarImageContainer>
+      </SidebarImageContainer> */}
     </Sidebar>
   );
 }

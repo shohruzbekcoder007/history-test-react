@@ -12,5 +12,8 @@ export default createTheme({
         paper: "rgb(249, 250, 251)",
         default: "rgb(249, 250, 251)"
       },
+      shape: {
+        borderRadius: "8px"
+      }
     },
   });

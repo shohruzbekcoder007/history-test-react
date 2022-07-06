@@ -7,6 +7,7 @@ import Main from "./components/common_components/Main";
 import SignIn from "./components/common_components/SignIn";
 import SignUp from "./components/common_components/SignUp";
 import Courses from "./components/teacher_components/Courses";
+import CoursesStudent from "./components/student_components/Courses";
 import StudentMain from "./components/student_components/Main";
 import TeacherMain from "./components/teacher_components/Main";
 import Students from "./components/teacher_components/Students";
@@ -22,7 +23,7 @@ function App() {
         {sessionStorage.getItem("x-auth-token") && (
           <Route path="/" element={<Main />}>
             <Route path="student" element={<StudentMain/>}>
-              <Route index element={<Courses />} />
+              <Route index element={<CoursesStudent />} />
               <Route path="nimadir" element={<p>nimadir</p>} />
             </Route>
             <Route path="teacher" element={<TeacherMain />}>

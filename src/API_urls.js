@@ -33,3 +33,11 @@ export const correctanswers_correct = `/correctanswers/correct`
 
 // fulltest
 export const fulltest = `/fulltest`
+
+// group 
+export const group = `/group`
+export const my_groups = `/group/mygroups`
+export const all_groups = `/group/allgroups`
+
+// group_member 
+export const group_my_member = `/groupmember/member`
