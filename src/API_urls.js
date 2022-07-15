@@ -42,3 +42,5 @@ export const all_groups = `/group/allgroups`
 // group_member 
 export const group_my_member = `/groupmember/member`
 export const reqforteacher = `/groupmember/reqforteacher`
+export const member_remove = `/groupmember/remove`
+export const readrequest = `/groupmember/readrequest`

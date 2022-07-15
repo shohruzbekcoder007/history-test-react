@@ -30,12 +30,13 @@ export default function CourseItem({ cours }) {
     setOpen(false);
   };
 
-  const addCourse = (_id) => {
+  const addCourse = (_id,teacher_id) => {
     axios
         .post(
           reqforteacher,
           {
-            group_id: _id
+            group_id: _id,
+            teacher_id: teacher_id
           },
           {
             headers: {
@@ -52,7 +53,6 @@ export default function CourseItem({ cours }) {
             setOpen(true)
           }else{
             socket.emit("send-request", response.data.group)
-            console.log("ishladi")
           }
         })
         .catch((error) => {
@@ -68,13 +68,13 @@ export default function CourseItem({ cours }) {
       <CourseText>{cours.group_text}</CourseText>
       <CourseFooter>
         <p>
-          <span>12</span> ta student <span>4</span> ta qo'llanma
+          <span>{cours.number_of_students}</span> ta student <span>{cours.number_of_maretials}</span> ta qo'llanma
         </p>
         <IconButton
           color="primary"
           aria-label="add an alarm"
           onClick={(_) => {
-            addCourse(cours._id)
+            addCourse(cours._id, cours.teacher_id)
           }}
         >
           <AddTaskIcon />

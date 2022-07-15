@@ -1,8 +1,8 @@
-import React, { useEffect, useState, memo } from "react";
-import { CoursesContainer } from "./styles";
-import { group_my_member } from "./../../../API_urls";
-import axios from "../../../baseUrl";
-import CourseItem from "./CourseItem";
+import React, { useEffect, useState, memo } from "react"
+import { CoursesContainer } from "./styles"
+import { group_my_member } from "./../../../API_urls"
+import axios from "../../../baseUrl"
+import CourseItemRemove from "./CourseItemRemove"
 
 const MyCourses = memo(() => {
   const [allCourses, setAllCourses] = useState([]);
@@ -26,13 +26,15 @@ const MyCourses = memo(() => {
         console.error("There was an error!", error);
       });
   }, []);
+
   return (
     <CoursesContainer maxWidth="md">
       {allCourses.map((course, index) => (
-        <CourseItem key={index} cours={course.group_id} />
+        <CourseItemRemove key={index} cours={course.group_id} memberId={course._id} />
       ))}
     </CoursesContainer>
   );
+
 });
 
 export default MyCourses;
