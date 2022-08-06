@@ -1,13 +1,14 @@
-import React, { useState } from "react"
-import IconButton from "@mui/material/IconButton"
-import ModeEditOutlineRoundedIcon from "@mui/icons-material/ModeEditOutlineRounded"
-import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded"
-import TransitEnterexitRoundedIcon from "@mui/icons-material/TransitEnterexitRounded"
-import { CourseHeader, CourseText, CourseFooter } from "./styles"
-import Input from "@mui/material/Input"
-import TextField from "@mui/material/TextField"
-import { styled } from "@mui/material/styles"
-import Paper from "@mui/material/Paper"
+import React, { useState } from "react";
+import IconButton from "@mui/material/IconButton";
+import ModeEditOutlineRoundedIcon from "@mui/icons-material/ModeEditOutlineRounded";
+import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
+import TransitEnterexitRoundedIcon from "@mui/icons-material/TransitEnterexitRounded";
+import { CourseHeader, CourseText, CourseFooter } from "./styles";
+import Input from "@mui/material/Input";
+import TextField from "@mui/material/TextField";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import { Link } from "react-router-dom";
 
 const CourseInfo = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -22,11 +23,11 @@ export default function CourseItem({ cours }) {
 
   return (
     <>
-        {
-            edit?
-            <CourseItemEdit cours={cours} edit={edit} setEdit={setEdit}/>:
-            <CourseItemInfo cours={cours} edit={edit} setEdit={setEdit}/>
-        }
+      {edit ? (
+        <CourseItemEdit cours={cours} edit={edit} setEdit={setEdit} />
+      ) : (
+        <CourseItemInfo cours={cours} edit={edit} setEdit={setEdit} />
+      )}
     </>
   );
 }
@@ -44,7 +45,7 @@ export const CourseItemInfo = ({ cours, edit, setEdit }) => {
           color="primary"
           aria-label="add an alarm"
           onClick={(_) => {
-              setEdit(!edit);
+            setEdit(!edit);
           }}
         >
           <ModeEditOutlineRoundedIcon />
@@ -55,30 +56,33 @@ export const CourseItemInfo = ({ cours, edit, setEdit }) => {
 };
 
 export const CourseItemEdit = ({ cours, edit, setEdit }) => {
-    return (
-        <CourseInfo>
-          <Input
-            defaultValue={cours.group_name}
-            inputProps={ariaLabel}
-            style={{ width: "100%" }}
-          />
-          <TextField
-            id={`standard-multiline-static`}
-            // multiline
-            multiline={false}
-            defaultValue={cours.group_text}
-            variant="standard"
-            style={{ width: "100%" }}
-          />
-      <CourseFooter>
-        <p>
-          <span>12</span> ta student <span>4</span> ta qo'llanma
-        </p>
+  return (
+    <Link to="teacher/course">
+      <CourseInfo>
+        <Input
+          defaultValue={cours.group_name}
+          inputProps={ariaLabel}
+          style={{ width: "100%" }}
+        />
+        <TextField
+          id={`standard-multiline-static`}
+          // multiline
+          multiline={false}
+          defaultValue={cours.group_text}
+          variant="standard"
+          style={{ width: "100%" }}
+        />
+        <CourseFooter>
+          <p>
+            <span>12</span> ta student <span>4</span> ta qo'llanma
+          </p>
           <div>
             <IconButton
               color="primary"
               aria-label="add an alarm"
-              onClick={(_) => {setEdit(!edit)}}
+              onClick={(_) => {
+                setEdit(!edit);
+              }}
             >
               <SaveAsRoundedIcon />
             </IconButton>
@@ -92,7 +96,8 @@ export const CourseItemEdit = ({ cours, edit, setEdit }) => {
               <TransitEnterexitRoundedIcon />
             </IconButton>
           </div>
-      </CourseFooter>
-    </CourseInfo>
-    )
-}
+        </CourseFooter>
+      </CourseInfo>
+    </Link>
+  );
+};

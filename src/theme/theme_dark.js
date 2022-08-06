@@ -8,5 +8,8 @@ export default createTheme({
         main: green[500],
         contrastText: "#fff"
       },
+    },
+    shape: {
+      borderRadius: 8,
     }
   });

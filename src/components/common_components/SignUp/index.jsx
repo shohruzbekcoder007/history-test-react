@@ -9,11 +9,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { Link } from 'react-router-dom'
-import axios from '../../../baseUrl'
+import axios from "../../../utils/baseUrl"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import { setUser } from '../../../redux/action/userActions'
-import { user } from '../../../API_urls'
+import { user } from "../../../utils/API_urls"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
 import listLanguage from './language.json'

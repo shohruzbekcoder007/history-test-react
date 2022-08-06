@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import CourseItem from "./CourseItem"
 import { AddCourse, CoursesContainer } from "./styles"
-import axios from "../../../baseUrl"
-import { my_groups } from '../../../API_urls'
+import axios from "../../../utils/baseUrl"
+import { my_groups } from "../../../utils/API_urls"
 import IconButton from '@mui/material/IconButton'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
 import { NewCourseItem } from "./NewCourseItem"
-import Typography from '@mui/material/Typography';
+import Typography from '@mui/material/Typography'
 
 export default function Courses() {
 

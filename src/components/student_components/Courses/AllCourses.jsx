@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from "react";
 import { CoursesContainer } from "./styles";
-import { all_groups } from "./../../../API_urls";
-import axios from "../../../baseUrl";
+import { all_groups } from "../../../utils/API_urls";
+import axios from "../../../utils/baseUrl";
 import CourseItem from "./CourseItem";
 
 const AllCourses = memo(() => {

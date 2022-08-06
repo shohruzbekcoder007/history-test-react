@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
 import Popover from "@mui/material/Popover";
@@ -14,8 +14,8 @@ import {
   StyleNotificationHeader,
 } from "./styles";
 import { useSelector } from "react-redux"
-import { readrequest } from "../../../API_urls"
-import axios from "../../../baseUrl"
+import { readrequest, requeststoteacher } from "../../../utils/API_urls"
+import axios from "../../../utils/baseUrl"
 import Box from "@mui/material/Box"
 import AddTaskIcon from '@mui/icons-material/AddTask'
 
@@ -23,6 +23,7 @@ export default function SimpleBadge() {
   const [anchorEl, setAnchorEl] = useState(null);
   const socket = useSelector((state) => state.socket);
   const [messages, setMessages] = useState([]);
+  const [numberOfMessages, setNumberOfMessages] = useState(0);
   // const [message, setMessage] = useState(null)
 
   socket?.on("response-from-teacher", (msg) => {
@@ -40,14 +41,37 @@ export default function SimpleBadge() {
         console.log(response.data);
         let msgs = [...messages];
         msgs.push(response.data);
+        msgs.push(response.data);
         setMessages(msgs);
-        console.log(msgs);
+        setNumberOfMessages(numberOfMessages+1);
       })
       .catch((error) => {
         console.log({ errorMessage: error.toString() });
         console.error("There was an error!", error);
       });
   });
+
+  // useEffect(() => {
+  //   axios
+  //     .get(requeststoteacher, {
+  //       headers: {
+  //         "x-auth-token": sessionStorage.getItem("x-auth-token"),
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       let msgs = [...messages];
+  //       msgs.push(response.data);
+  //       msgs.push(response.data);
+  //       setMessages(response.data);
+  //       console.log(msgs);
+  //       setNumberOfMessages(response.data.length);
+  //     })
+  //     .catch((error) => {
+  //       console.log({ errorMessage: error.toString() });
+  //       console.error("There was an error!", error);
+  //     });
+  // },[])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,7 +88,7 @@ export default function SimpleBadge() {
     <div>
       <Tooltip title="Notification">
         <IconButton onClick={handleClick}>
-          <Badge badgeContent={4} color="primary">
+          <Badge badgeContent={numberOfMessages} color="primary">
             <MailIcon color="action" />
           </Badge>
         </IconButton>
@@ -99,9 +123,9 @@ export default function SimpleBadge() {
                     mb: 1,
                   }}
                 >
-                  <b>Group: </b>{message.group_id.group_name}<br/>
-                  <b>Student: </b>{message.student_id.name}<br/>
-                  <b>Email: </b>{message.student_id.email}<br/>
+                  <b>Group: </b>{message.group_id?.group_name}<br/>
+                  <b>Student: </b>{message.student_id?.name}<br/>
+                  <b>Email: </b>{message.student_id?.email}<br/>
                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                     <div>
                       <b>Response: </b>

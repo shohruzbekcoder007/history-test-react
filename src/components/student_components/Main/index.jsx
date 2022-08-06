@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/action/userActions";
-import axios from "../../../baseUrl";
-import { user_info, host } from '../../../API_urls'
+import axios from "../../../utils/baseUrl";
+import { user_info, host } from "../../../utils/API_urls"
 import { setSocket } from "../../../redux/action/socketAction"
 import { io } from "socket.io-client";
 

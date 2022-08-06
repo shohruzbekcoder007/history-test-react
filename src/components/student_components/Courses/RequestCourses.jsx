@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from "react"
 import { CoursesContainer } from "./styles"
-import { group_my_member } from "./../../../API_urls"
-import axios from "../../../baseUrl"
+import { group_my_member } from "../../../utils/API_urls"
+import axios from "../../../utils/baseUrl"
 import CourseItemRemove from "./CourseItemRemove"
 
 const RequestCourses = memo(() => {

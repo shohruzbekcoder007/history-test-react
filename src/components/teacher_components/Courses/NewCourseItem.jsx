@@ -7,8 +7,8 @@ import Input from "@mui/material/Input"
 import TextField from "@mui/material/TextField"
 import { styled } from "@mui/material/styles"
 import Paper from "@mui/material/Paper"
-import axios from "../../../baseUrl"
-import { group } from '../../../API_urls'
+import axios from "../../../utils/baseUrl"
+import { group } from "../../../utils/API_urls"
 
 const CourseInfo = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),

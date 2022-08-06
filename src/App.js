@@ -11,6 +11,7 @@ import CoursesStudent from "./components/student_components/Courses";
 import StudentMain from "./components/student_components/Main";
 import TeacherMain from "./components/teacher_components/Main";
 import Students from "./components/teacher_components/Students";
+import TeacherCourse from "./components/teacher_components/Course"
 
 function App() {
   const theme = useSelector((state) => state.theme);
@@ -28,6 +29,7 @@ function App() {
             </Route>
             <Route path="teacher" element={<TeacherMain />}>
               <Route index element={<Courses />} />
+              <Route path="course" element={<TeacherCourse />} />
               <Route path="students" element={<Students/>} />
               <Route path="natijalar" element={<p>natijalar</p>} />
             </Route>

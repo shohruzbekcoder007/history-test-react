@@ -4,8 +4,8 @@ import { styled } from "@mui/material/styles"
 import Paper from "@mui/material/Paper"
 import IconButton from "@mui/material/IconButton"
 import AddTaskIcon from '@mui/icons-material/AddTask'
-import { reqforteacher } from '../../../API_urls'
-import axios from "../../../baseUrl"
+import { reqforteacher } from "../../../utils/API_urls"
+import axios from "../../../utils/baseUrl"
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'

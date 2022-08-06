@@ -16,4 +16,7 @@ export default createTheme({
         borderRadius: "8px"
       }
     },
+    shape: {
+      borderRadius: 8,
+    }
   });
