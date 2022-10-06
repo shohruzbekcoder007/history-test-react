@@ -1,0 +1,38 @@
+{
+    "tooltip": {
+        "uz": "Profil sozlamalari",
+        "ru": "Настройки учетной записи",
+        "eng": "Account settings",
+        "uzc": "Профил созламалари"
+    },
+    "profile": {
+        "uz": "Profil",
+        "ru": "Профиль",
+        "eng": "Profile",
+        "uzc": "Профил"
+    },
+    "account": {
+        "uz": "Mening hisobim",
+        "ru": "Мой счет",
+        "eng": "My account",
+        "uzc": "Менинг ҳисобим"
+    },
+    "anotheraccount": {
+        "uz": "Boshqa hisob qo'shing",
+        "ru": "Добавить еще одну учетную запись",
+        "eng": "Add another account",
+        "uzc": "Бошқа ҳисоб қўшинг"
+    },
+    "settings" : {
+        "uz": "Sozlamalar",
+        "ru": "Настройки",
+        "eng": "Settings",
+        "uzc": "Созламалар"
+    },
+    "logout": {
+        "uz": "Chiqish",
+        "ru": "Выйти",
+        "eng": "Logout",
+        "uzc": "Чиқиш"
+    }
+}

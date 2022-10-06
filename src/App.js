@@ -12,34 +12,37 @@ import StudentMain from "./components/student_components/Main";
 import TeacherMain from "./components/teacher_components/Main";
 import Students from "./components/teacher_components/Students";
 import TeacherCourse from "./components/teacher_components/Course"
+import {SocketContext, socket} from './context/socket';
 
 function App() {
   const theme = useSelector((state) => state.theme);
   const user = useSelector((state) => state.user);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes>
-        {sessionStorage.getItem("x-auth-token") && (
-          <Route path="/" element={<Main />}>
-            <Route path="student" element={<StudentMain/>}>
-              <Route index element={<CoursesStudent />} />
-              <Route path="nimadir" element={<p>nimadir</p>} />
+    <SocketContext.Provider value={socket}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          {sessionStorage.getItem("x-auth-token") && (
+            <Route path="/" element={<Main />}>
+              <Route path="student" element={<StudentMain/>}>
+                <Route index element={<CoursesStudent />} />
+                <Route path="nimadir" element={<p>nimadir</p>} />
+              </Route>
+              <Route path="teacher" element={<TeacherMain />}>
+                <Route index element={<Courses />} />
+                <Route path="course" element={<TeacherCourse />} />
+                <Route path="students" element={<Students/>} />
+                <Route path="natijalar" element={<p>natijalar</p>} />
+              </Route>
             </Route>
-            <Route path="teacher" element={<TeacherMain />}>
-              <Route index element={<Courses />} />
-              <Route path="course" element={<TeacherCourse />} />
-              <Route path="students" element={<Students/>} />
-              <Route path="natijalar" element={<p>natijalar</p>} />
-            </Route>
-          </Route>
-        )}
-        <Route path="login" element={<SignIn />} />
-        <Route path="reg" element={<SignUp />} />
-        <Route path="*" element={<Navigate to={user ? "/" : "login"} />} />
-      </Routes>
-    </ThemeProvider>
+          )}
+          <Route path="login" element={<SignIn />} />
+          <Route path="reg" element={<SignUp />} />
+          <Route path="*" element={<Navigate to={user ? "/" : "login"} />} />
+        </Routes>
+      </ThemeProvider>
+    </SocketContext.Provider>
   );
 }
 

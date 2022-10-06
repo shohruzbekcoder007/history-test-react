@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { CourseHeader, CourseText, CourseFooter } from "./styles"
 import { styled } from "@mui/material/styles"
 import Paper from "@mui/material/Paper"
@@ -10,7 +10,8 @@ import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import { useSelector } from "react-redux"
+// import { useSelector } from "react-redux"
+import {SocketContext} from '../../../context/socket';
 
 
 const CourseInfo = styled(Paper)(({ theme }) => ({
@@ -20,10 +21,11 @@ const CourseInfo = styled(Paper)(({ theme }) => ({
 }));
 
 
-export default function CourseItem({ cours }) {
+export default function CourseItem({ course }) {
 
   const [open, setOpen] = React.useState(false);
-  const socket = useSelector((state) => state.socket);
+  const socket = useContext(SocketContext);
+  // const socket = useSelector((state) => state.socket);
 
 
   const handleClose = () => {
@@ -31,6 +33,7 @@ export default function CourseItem({ cours }) {
   };
 
   const addCourse = (_id,teacher_id) => {
+    console.log("bosildi!!!!")
     axios
         .post(
           reqforteacher,
@@ -64,17 +67,17 @@ export default function CourseItem({ cours }) {
   return (
     <>
     <CourseInfo>
-      <CourseHeader>{cours.group_name}</CourseHeader>
-      <CourseText>{cours.group_text}</CourseText>
+      <CourseHeader>{course.group_name}</CourseHeader>
+      <CourseText>{course.group_text}</CourseText>
       <CourseFooter>
         <p>
-          <span>{cours.number_of_students}</span> ta student <span>{cours.number_of_maretials}</span> ta qo'llanma
+          <span>{course.number_of_students}</span> ta student <span>{course.number_of_maretials}</span> ta qo'llanma
         </p>
         <IconButton
           color="primary"
           aria-label="add an alarm"
           onClick={(_) => {
-            addCourse(cours._id, cours.teacher_id)
+            addCourse(course._id, course.teacher_id)
           }}
         >
           <AddTaskIcon />

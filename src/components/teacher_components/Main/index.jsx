@@ -1,17 +1,20 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useContext, useMemo } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { setUser } from "../../../redux/action/userActions"
 import axios from "../../../utils/baseUrl"
 import { user_info, host } from "../../../utils/API_urls"
-import { setSocket } from "../../../redux/action/socketAction"
-import { io } from "socket.io-client";
+// import { setSocket } from "../../../redux/action/socketAction"
+// import { io } from "socket.io-client";
+import {SocketContext} from '../../../context/socket';
 
 export default function Main() {
+
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  const socket = useContext(SocketContext);
 
-  useEffect(() => {
+  useMemo(() => {
     sessionStorage.getItem("x-auth-token") &&
       axios
         .get(
@@ -30,8 +33,8 @@ export default function Main() {
           dispatch(setUser(response.data));
 
           //create socket
-          const socket = io(host);
-          dispatch(setSocket(socket));
+          // const socket = io(host);
+          // dispatch(setSocket(socket));
           socket.emit('add-user', {userId: response.data._id, status: response.data.isAdmin})
           if (response.data.isAdmin === false) {
             navigate("/login");

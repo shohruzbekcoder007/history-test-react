@@ -39,7 +39,7 @@ export const CourseItemInfo = ({ cours, edit, setEdit }) => {
       <CourseText>{cours.group_text}</CourseText>
       <CourseFooter>
         <p>
-          <span>12</span> ta student <span>4</span> ta qo'llanma
+          <span>{cours.number_of_students}</span> ta student <span>{cours.number_of_maretials}</span> ta qo'llanma
         </p>
         <IconButton
           color="primary"
@@ -74,7 +74,7 @@ export const CourseItemEdit = ({ cours, edit, setEdit }) => {
         />
         <CourseFooter>
           <p>
-            <span>12</span> ta student <span>4</span> ta qo'llanma
+            <span>{cours.number_of_students}</span> ta student <span>{cours.number_of_maretials}</span> ta qo'llanma
           </p>
           <div>
             <IconButton

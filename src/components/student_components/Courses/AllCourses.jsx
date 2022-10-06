@@ -5,6 +5,7 @@ import axios from "../../../utils/baseUrl";
 import CourseItem from "./CourseItem";
 
 const AllCourses = memo(() => {
+  
   const [allCourses, setAllCourses] = useState([]);
 
   useEffect(() => {
@@ -26,10 +27,11 @@ const AllCourses = memo(() => {
         console.error("There was an error!", error);
       });
   }, []);
+
   return (
     <CoursesContainer maxWidth="md">
       {allCourses.map((course, index) => (
-        <CourseItem key={index} cours={course} />
+        <CourseItem key={index} course={course} />
       ))}
       
     </CoursesContainer>

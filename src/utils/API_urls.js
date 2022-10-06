@@ -9,6 +9,9 @@ export const user_update = `/user/update`
 export const user_remove = `/user/remove`
 export const user_teachers = `/user/teachers`
 
+// upload file
+export const profil_img = `/file/uploadimg`
+
 // question
 export const question = `/question`
 
@@ -44,4 +47,3 @@ export const group_my_member = `/groupmember/member`
 export const reqforteacher = `/groupmember/reqforteacher`
 export const member_remove = `/groupmember/remove`
 export const readrequest = `/groupmember/readrequest` 
-export const requeststoteacher = `/groupmember/requeststoteacher` 

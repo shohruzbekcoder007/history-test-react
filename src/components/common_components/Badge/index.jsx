@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
 import Popover from "@mui/material/Popover";
@@ -7,71 +7,56 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import {
-  Message,
   StyleNotification,
   StyleNotificationBody,
   StyleNotificationFooter,
   StyleNotificationHeader,
 } from "./styles";
 import { useSelector } from "react-redux"
-import { readrequest, requeststoteacher } from "../../../utils/API_urls"
+import { readrequest } from "../../../utils/API_urls"
 import axios from "../../../utils/baseUrl"
 import Box from "@mui/material/Box"
 import AddTaskIcon from '@mui/icons-material/AddTask'
+import {SocketContext} from '../../../context/socket'
+import listLanguage from './language.json'
+import Divider from '@mui/material/Divider'
 
 export default function SimpleBadge() {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const socket = useSelector((state) => state.socket);
-  const [messages, setMessages] = useState([]);
-  const [numberOfMessages, setNumberOfMessages] = useState(0);
-  // const [message, setMessage] = useState(null)
 
-  socket?.on("response-from-teacher", (msg) => {
-    console.log(msg, "surov qabul qilindi");
-    axios
-      .get(readrequest, {
-        data: {
-          group_id: msg.group_id,
-        },
-        headers: {
-          "x-auth-token": sessionStorage.getItem("x-auth-token"),
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        let msgs = [...messages];
-        msgs.push(response.data);
-        msgs.push(response.data);
-        setMessages(msgs);
-        setNumberOfMessages(numberOfMessages+1);
-      })
-      .catch((error) => {
-        console.log({ errorMessage: error.toString() });
-        console.error("There was an error!", error);
-      });
-  });
+  const [anchorEl, setAnchorEl] = useState(null)
+  const socket = useContext(SocketContext)
+  // const socket = useSelector((state) => state.socket)
+  const [messages, setMessages] = useState([])
+  const [numberOfMessages, setNumberOfMessages] = useState(0)
+  const language = useSelector(state => state.language)
+  // const user = useSelector(state => state.user)
 
-  // useEffect(() => {
-  //   axios
-  //     .get(requeststoteacher, {
-  //       headers: {
-  //         "x-auth-token": sessionStorage.getItem("x-auth-token"),
-  //       },
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       let msgs = [...messages];
-  //       msgs.push(response.data);
-  //       msgs.push(response.data);
-  //       setMessages(response.data);
-  //       console.log(msgs);
-  //       setNumberOfMessages(response.data.length);
-  //     })
-  //     .catch((error) => {
-  //       console.log({ errorMessage: error.toString() });
-  //       console.error("There was an error!", error);
-  //     });
-  // },[])
+  useMemo(() => {
+    socket?.on("response-from-teacher", (msg) => {
+        axios({
+          method: 'get',
+          url: readrequest,
+          params: {
+            _id: msg._id,
+          },
+          headers: {"x-auth-token": sessionStorage.getItem("x-auth-token")}
+        }).then((response) => {
+          sessionStorage.setItem(
+            "x-auth-token",
+            response.headers["x-auth-token"]
+          );
+          let ms = messages
+          ms.push(response.data)
+          setMessages(ms)
+          setNumberOfMessages(messages.length)
+        })
+        .catch((error) => {
+          console.log({ errorMessage: error.toString() });
+          console.error("There was an error!", error);
+        });
+    });
+
+  },[messages, socket])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -81,12 +66,20 @@ export default function SimpleBadge() {
     setAnchorEl(null);
   };
 
+  const dateToString = (date) => {
+    return new Date(date).getDate() 
+          + "."+(new Date(date).getMonth()+1)
+          + "."+new Date(date).getFullYear()
+          + " "+ new Date(date).getHours()
+          + ':' + new Date(date).getMinutes()
+  }
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
   return (
     <div>
-      <Tooltip title="Notification">
+      <Tooltip title={listLanguage.tooltip[language]}>
         <IconButton onClick={handleClick}>
           <Badge badgeContent={numberOfMessages} color="primary">
             <MailIcon color="action" />
@@ -106,9 +99,9 @@ export default function SimpleBadge() {
         <StyleNotification>
           <StyleNotificationHeader style={{ textAlign: "center" }}>
             <Typography variant="button" display="block">
-              Notifications
+              {listLanguage.tooltip[language]}
             </Typography>
-            <Typography variant="body2">You have 2 unread messages</Typography>
+            <Typography variant="body2">{`You have ${numberOfMessages} unread messages`}</Typography>
           </StyleNotificationHeader>
           <StyleNotificationBody>
             {messages.map((message, index) => {
@@ -123,9 +116,10 @@ export default function SimpleBadge() {
                     mb: 1,
                   }}
                 >
-                  <b>Group: </b>{message.group_id?.group_name}<br/>
-                  <b>Student: </b>{message.student_id?.name}<br/>
-                  <b>Email: </b>{message.student_id?.email}<br/>
+                  <i>Group: </i><b>{message.group_id?.group_name}</b><br/>
+                  <i>Student: </i><b>{message.student_id?.name}</b><br/>
+                  <i>Email: </i><b>{message.student_id?.email}</b><br/>
+                  <i>Date: </i><b><i>{dateToString(message.create_date)}</i></b><br/>
                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                     <div>
                       <b>Response: </b>
@@ -144,7 +138,7 @@ export default function SimpleBadge() {
                       color="primary"
                       aria-label="add an alarm"
                       onClick={(_) => {
-                        
+                        console.log("salom")
                       }}
                     >
                       <AddTaskIcon />
@@ -154,7 +148,7 @@ export default function SimpleBadge() {
                 </Box>
               );
             })}
-            <Message>message custom</Message>
+            <Divider/>
           </StyleNotificationBody>
           <StyleNotificationFooter>
             <Button>View All</Button>

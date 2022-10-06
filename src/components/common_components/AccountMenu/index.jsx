@@ -10,20 +10,28 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import { useSelector } from 'react-redux'
+import listLanguage from './language.json'
 
 export default function AccountMenu() {
+
+  const language = useSelector(state => state.language)
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl)
+
+  // {listLanguage.tooltip[language]}
+
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
+
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title="Account settings">
+        <Tooltip title={listLanguage.tooltip[language]}>
           <IconButton
             onClick={handleClick}
             sx={{ ml: 2 }}
@@ -71,29 +79,29 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          <Avatar /> {listLanguage.profile[language]}
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <Avatar /> {listLanguage.account[language]}
         </MenuItem>
         <Divider />
         <MenuItem>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-          Add another account
+            {listLanguage.anotheraccount[language]}
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Settings
+            {listLanguage.settings[language]}
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+            {listLanguage.logout[language]}
         </MenuItem>
       </Menu>
     </React.Fragment>
