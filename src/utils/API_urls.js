@@ -46,4 +46,5 @@ export const all_groups = `/group/allgroups`
 export const group_my_member = `/groupmember/member`
 export const reqforteacher = `/groupmember/reqforteacher`
 export const member_remove = `/groupmember/remove`
-export const readrequest = `/groupmember/readrequest` 
+export const readrequest = `/groupmember/readrequest`
+export const resforstudent = `/groupmember/resforstudent` 

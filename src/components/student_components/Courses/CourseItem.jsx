@@ -10,7 +10,6 @@ import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-// import { useSelector } from "react-redux"
 import {SocketContext} from '../../../context/socket';
 
 
@@ -25,7 +24,6 @@ export default function CourseItem({ course }) {
 
   const [open, setOpen] = React.useState(false);
   const socket = useContext(SocketContext);
-  // const socket = useSelector((state) => state.socket);
 
 
   const handleClose = () => {
@@ -33,7 +31,6 @@ export default function CourseItem({ course }) {
   };
 
   const addCourse = (_id,teacher_id) => {
-    console.log("bosildi!!!!")
     axios
         .post(
           reqforteacher,

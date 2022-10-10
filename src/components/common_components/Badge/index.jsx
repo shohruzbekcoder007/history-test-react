@@ -12,43 +12,45 @@ import {
   StyleNotificationFooter,
   StyleNotificationHeader,
 } from "./styles";
-import { useSelector } from "react-redux"
-import { readrequest } from "../../../utils/API_urls"
-import axios from "../../../utils/baseUrl"
-import Box from "@mui/material/Box"
-import AddTaskIcon from '@mui/icons-material/AddTask'
-import {SocketContext} from '../../../context/socket'
-import listLanguage from './language.json'
-import Divider from '@mui/material/Divider'
+import { useSelector } from "react-redux";
+import {
+  readrequest,
+  resforstudent,
+} from "../../../utils/API_urls";
+import axios from "../../../utils/baseUrl";
+import Box from "@mui/material/Box";
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import { SocketContext } from "../../../context/socket";
+import listLanguage from "./language.json";
+import Divider from "@mui/material/Divider";
 
 export default function SimpleBadge() {
-
-  const [anchorEl, setAnchorEl] = useState(null)
-  const socket = useContext(SocketContext)
-  // const socket = useSelector((state) => state.socket)
-  const [messages, setMessages] = useState([])
-  const [numberOfMessages, setNumberOfMessages] = useState(0)
-  const language = useSelector(state => state.language)
-  // const user = useSelector(state => state.user)
+  const [anchorEl, setAnchorEl] = useState(null);
+  const socket = useContext(SocketContext);
+  const [messages, setMessages] = useState([]);
+  const [messagesForStudent, setMessagesForStudent] = useState([]);
+  const [numberOfMessages, setNumberOfMessages] = useState(0);
+  const language = useSelector((state) => state.language);
 
   useMemo(() => {
     socket?.on("response-from-teacher", (msg) => {
-        axios({
-          method: 'get',
-          url: readrequest,
-          params: {
-            _id: msg._id,
-          },
-          headers: {"x-auth-token": sessionStorage.getItem("x-auth-token")}
-        }).then((response) => {
+      axios({
+        method: "get",
+        url: readrequest,
+        params: {
+          _id: msg._id,
+        },
+        headers: { "x-auth-token": sessionStorage.getItem("x-auth-token") },
+      })
+        .then((response) => {
           sessionStorage.setItem(
             "x-auth-token",
             response.headers["x-auth-token"]
           );
-          let ms = messages
-          ms.push(response.data)
-          setMessages(ms)
-          setNumberOfMessages(messages.length)
+          let ms = messages;
+          ms.push(response.data);
+          setMessages(ms);
+          setNumberOfMessages(messages.length);
         })
         .catch((error) => {
           console.log({ errorMessage: error.toString() });
@@ -56,7 +58,58 @@ export default function SimpleBadge() {
         });
     });
 
-  },[messages, socket])
+    socket?.on("response-from-student", (msg) => {
+      axios({
+        method: "get",
+        url: readrequest,
+        params: {
+          _id: msg._id,
+        },
+        headers: { "x-auth-token": sessionStorage.getItem("x-auth-token") },
+      })
+        .then((response) => {
+          sessionStorage.setItem(
+            "x-auth-token",
+            response.headers["x-auth-token"]
+          );
+          let ms = messagesForStudent;
+          ms.push(response.data);
+          setMessagesForStudent(ms);
+          setNumberOfMessages(messagesForStudent.length);
+        })
+        .catch((error) => {
+          console.log({ errorMessage: error.toString() });
+          console.error("There was an error!", error);
+        });
+    });
+  }, [messages, messagesForStudent, socket]);
+
+
+  const responseForStudent = (group) => {
+    axios
+      .post(
+        resforstudent,
+        {
+          req_id: group._id,
+        },
+        {
+          headers: {
+            "x-auth-token": sessionStorage.getItem("x-auth-token"),
+          },
+        }
+      )
+      .then((response) => {
+        sessionStorage.setItem(
+          "x-auth-token",
+          response.headers["x-auth-token"]
+        );
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log({ errorMessage: error.toString() });
+        console.error("There was an error!", error);
+      });
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -67,12 +120,18 @@ export default function SimpleBadge() {
   };
 
   const dateToString = (date) => {
-    return new Date(date).getDate() 
-          + "."+(new Date(date).getMonth()+1)
-          + "."+new Date(date).getFullYear()
-          + " "+ new Date(date).getHours()
-          + ':' + new Date(date).getMinutes()
-  }
+    return (
+      new Date(date).getDate() +
+      "." +
+      (new Date(date).getMonth() + 1) +
+      "." +
+      new Date(date).getFullYear() +
+      " " +
+      new Date(date).getHours() +
+      ":" +
+      new Date(date).getMinutes()
+    );
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -116,39 +175,54 @@ export default function SimpleBadge() {
                     mb: 1,
                   }}
                 >
-                  <i>Group: </i><b>{message.group_id?.group_name}</b><br/>
-                  <i>Student: </i><b>{message.student_id?.name}</b><br/>
-                  <i>Email: </i><b>{message.student_id?.email}</b><br/>
-                  <i>Date: </i><b><i>{dateToString(message.create_date)}</i></b><br/>
-                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                  <i>Group: </i>
+                  <b>{message.group_id?.group_name}</b>
+                  <br />
+                  <i>Student: </i>
+                  <b>{message.student_id?.name}</b>
+                  <br />
+                  <i>Email: </i>
+                  <b>{message.student_id?.email}</b>
+                  <br />
+                  <i>Date: </i>
+                  <b>
+                    <i>{dateToString(message.create_date)}</i>
+                  </b>
+                  <br />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <div>
                       <b>Response: </b>
                     </div>
                     <div>
-                    <IconButton
-                      color="primary"
-                      aria-label="add an alarm"
-                      onClick={(_) => {
-                        
-                      }}
-                    >
-                      <AddTaskIcon />
-                    </IconButton>
-                    <IconButton
-                      color="primary"
-                      aria-label="add an alarm"
-                      onClick={(_) => {
-                        console.log("salom")
-                      }}
-                    >
-                      <AddTaskIcon />
-                    </IconButton>
+                      <IconButton
+                        color="primary"
+                        aria-label="add an alarm"
+                        onClick={(_) => {}}
+                      >
+                        <AddTaskIcon />
+                      </IconButton>
+                      <IconButton
+                        color="primary"
+                        aria-label="add an alarm"
+                        onClick={(_) => {
+                          console.log("salom");
+                          responseForStudent(message);
+                        }}
+                      >
+                        <AddTaskIcon />
+                      </IconButton>
                     </div>
                   </div>
                 </Box>
               );
             })}
-            <Divider/>
+            <Divider />
           </StyleNotificationBody>
           <StyleNotificationFooter>
             <Button>View All</Button>
