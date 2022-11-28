@@ -2,13 +2,13 @@ import React, { useState } from "react"
 import IconButton from "@mui/material/IconButton"
 import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded"
 import TransitEnterexitRoundedIcon from "@mui/icons-material/TransitEnterexitRounded"
-import { CourseFooter } from "./styles"
+import { CourseFooter } from "../styles"
 import Input from "@mui/material/Input"
 import TextField from "@mui/material/TextField"
 import { styled } from "@mui/material/styles"
 import Paper from "@mui/material/Paper"
-import axios from "../../../utils/baseUrl"
-import { group } from "../../../utils/API_urls"
+import axios from "../../../../utils/baseUrl"
+import { group } from "../../../../utils/API_urls"
 
 const CourseInfo = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),

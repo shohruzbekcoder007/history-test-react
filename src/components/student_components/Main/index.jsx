@@ -13,7 +13,6 @@ export default function Main() {
   let navigate = useNavigate();
 
   useMemo(() => {
-    console.log("lalakudan yangilik!!!")
     sessionStorage.getItem("x-auth-token") &&
       axios
         .get(

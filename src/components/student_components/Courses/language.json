@@ -1,0 +1,20 @@
+{
+    "tub1": {
+        "uz": "Mening kurslarim",
+        "ru": "Мои курсы",
+        "eng": "My courses",
+        "uzc": "Менинг курсларим"
+    },
+    "tub2": {
+        "uz": "Barcha kurslar",
+        "ru": "Все курсы",
+        "eng": "All courses",
+        "uzc": "Барча курслар"
+    },
+    "tub3": {
+        "uz": "Azolik kutilmoqda",
+        "ru": "Членство находится на рассмотрении",
+        "eng": "Membership is pending",
+        "uzc": "Азолик кутилмоқда"
+    }
+}

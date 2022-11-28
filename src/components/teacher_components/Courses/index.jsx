@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
 import { NewCourseItem } from "./NewCourseItem"
 import Typography from '@mui/material/Typography'
+import { Link } from "react-router-dom"
 
 export default function Courses() {
 
@@ -57,7 +58,9 @@ export default function Courses() {
       }
       {
         courses.length?courses.map((cours, index) => {
-          return <CourseItem key={index} cours={cours}/>
+          return (
+              <CourseItem key={index} cours={cours}/>
+          )
         }):
         <Typography variant="h6" gutterBottom component="div">
           Sizda hozida guruhlar mavjud emas yangi gruruh tashkil qilish uchun + tugmasini bosing!!!

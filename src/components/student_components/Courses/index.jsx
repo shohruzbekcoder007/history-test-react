@@ -7,14 +7,22 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import MyCourses from "./MyCourses"
 import AllCourses from "./AllCourses"
 import RequestCourses from "./RequestCourses"
+import { useSelector } from "react-redux"
+import listLanguage from "./language.json"
+import { styled } from "@mui/material/styles"
+
+const BottomNavigationWithMargin = styled(BottomNavigation)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+}));
 
 export default function Courses() {
 
   const [value, setValue] = React.useState(0);
+  const language = useSelector((state) => state.language)
 
   return (
     <>
-      <BottomNavigation
+      <BottomNavigationWithMargin
         showLabels
         value={value}
         sx={{ backgroundColor: "transparent" }}
@@ -22,10 +30,10 @@ export default function Courses() {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Mening kurslarim" icon={<DoneIcon />} />
-        <BottomNavigationAction label="Barcha kurslar" icon={<AllInclusiveIcon />} />
-        <BottomNavigationAction label="Azolik kutilmoqda" icon={<HourglassEmptyIcon />} />
-      </BottomNavigation>
+        <BottomNavigationAction label={listLanguage.tub1[language]} icon={<DoneIcon />} />
+        <BottomNavigationAction label={listLanguage.tub2[language]} icon={<AllInclusiveIcon />} />
+        <BottomNavigationAction label={listLanguage.tub3[language]} icon={<HourglassEmptyIcon />} />
+      </BottomNavigationWithMargin>
       {value===0&&<MyCourses/>}
       {value===1&&<AllCourses/>}
       {value===2&&<RequestCourses/>}

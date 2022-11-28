@@ -1,36 +1,37 @@
-import React, { useState, useMemo, useContext } from "react";
-import Badge from "@mui/material/Badge";
-import Tooltip from "@mui/material/Tooltip";
-import Popover from "@mui/material/Popover";
-import MailIcon from "@mui/icons-material/Mail";
-import IconButton from "@mui/material/IconButton";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import React, { useState, useMemo, useContext } from "react"
+import Badge from "@mui/material/Badge"
+import Tooltip from "@mui/material/Tooltip"
+import Popover from "@mui/material/Popover"
+import MailIcon from "@mui/icons-material/Mail"
+import IconButton from "@mui/material/IconButton"
+import Button from "@mui/material/Button"
+import Typography from "@mui/material/Typography"
 import {
   StyleNotification,
   StyleNotificationBody,
   StyleNotificationFooter,
   StyleNotificationHeader,
 } from "./styles";
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 import {
   readrequest,
   resforstudent,
-} from "../../../utils/API_urls";
-import axios from "../../../utils/baseUrl";
-import Box from "@mui/material/Box";
-import AddTaskIcon from "@mui/icons-material/AddTask";
-import { SocketContext } from "../../../context/socket";
-import listLanguage from "./language.json";
-import Divider from "@mui/material/Divider";
+} from "../../../utils/API_urls"
+import axios from "../../../utils/baseUrl"
+import Box from "@mui/material/Box"
+import AddTaskIcon from "@mui/icons-material/AddTask"
+import { SocketContext } from "../../../context/socket"
+import listLanguage from "./language.json"
+import Divider from "@mui/material/Divider"
 
 export default function SimpleBadge() {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const socket = useContext(SocketContext);
-  const [messages, setMessages] = useState([]);
-  const [messagesForStudent, setMessagesForStudent] = useState([]);
-  const [numberOfMessages, setNumberOfMessages] = useState(0);
-  const language = useSelector((state) => state.language);
+  const [anchorEl, setAnchorEl] = useState(null)
+  const socket = useContext(SocketContext)
+  const [messages, setMessages] = useState([])
+  const [messagesForStudent, setMessagesForStudent] = useState([])
+  const [numberOfMessages, setNumberOfMessages] = useState(0)
+  const language = useSelector((state) => state.language)
+  const user = useSelector((state) => state.user)
 
   useMemo(() => {
     socket?.on("response-from-teacher", (msg) => {
@@ -59,6 +60,7 @@ export default function SimpleBadge() {
     });
 
     socket?.on("response-from-student", (msg) => {
+      console.log(msg, "jinurgur ishlada endi")
       axios({
         method: "get",
         url: readrequest,
@@ -85,7 +87,7 @@ export default function SimpleBadge() {
   }, [messages, messagesForStudent, socket]);
 
 
-  const responseForStudent = (group) => {
+  const responseForStudent = (group, _id) => {
     axios
       .post(
         resforstudent,
@@ -103,7 +105,11 @@ export default function SimpleBadge() {
           "x-auth-token",
           response.headers["x-auth-token"]
         );
-        console.log(response);
+        let data = {
+          group: response.data,
+          student_id: _id
+        }
+        socket.emit("send-response", data)
       })
       .catch((error) => {
         console.log({ errorMessage: error.toString() });
@@ -163,6 +169,11 @@ export default function SimpleBadge() {
             <Typography variant="body2">{`You have ${numberOfMessages} unread messages`}</Typography>
           </StyleNotificationHeader>
           <StyleNotificationBody>
+            {messagesForStudent.map((message, index) => {
+              return (
+                  <p key={index}>salom</p>
+              )
+            })}
             {messages.map((message, index) => {
               return (
                 <Box
@@ -211,8 +222,7 @@ export default function SimpleBadge() {
                         color="primary"
                         aria-label="add an alarm"
                         onClick={(_) => {
-                          console.log("salom");
-                          responseForStudent(message);
+                          responseForStudent(message, user._id);
                         }}
                       >
                         <AddTaskIcon />

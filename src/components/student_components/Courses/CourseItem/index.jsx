@@ -1,16 +1,16 @@
 import React, { useContext } from "react"
-import { CourseHeader, CourseText, CourseFooter } from "./styles"
+import { CourseHeader, CourseText, CourseFooter } from "../styles"
 import { styled } from "@mui/material/styles"
 import Paper from "@mui/material/Paper"
 import IconButton from "@mui/material/IconButton"
 import AddTaskIcon from '@mui/icons-material/AddTask'
-import { reqforteacher } from "../../../utils/API_urls"
-import axios from "../../../utils/baseUrl"
+import { reqforteacher } from "../../../../utils/API_urls"
+import axios from "../../../../utils/baseUrl"
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import {SocketContext} from '../../../context/socket';
+import {SocketContext} from '../../../../context/socket';
 
 
 const CourseInfo = styled(Paper)(({ theme }) => ({

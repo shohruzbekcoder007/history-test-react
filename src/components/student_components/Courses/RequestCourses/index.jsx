@@ -1,15 +1,15 @@
 import React, { useEffect, useState, memo } from "react"
-import { CoursesContainer } from "./styles"
-import { group_my_member } from "../../../utils/API_urls"
-import axios from "../../../utils/baseUrl"
-import CourseItemRemove from "./CourseItemRemove"
+import { CoursesContainer } from "../styles"
+import { group_my_member } from "../../../../utils/API_urls"
+import axios from "../../../../utils/baseUrl"
+import CourseItemRemove from "../CourseItemRemove"
 
-const MyCourses = memo(() => {
+const RequestCourses = memo(() => {
   const [allCourses, setAllCourses] = useState([]);
 
   useEffect(() => {
     axios
-      .get(group_my_member + "?status=true", {
+      .get(group_my_member + "?status=false", {
         headers: {
           "x-auth-token": sessionStorage.getItem("x-auth-token"),
         },
@@ -30,11 +30,11 @@ const MyCourses = memo(() => {
   return (
     <CoursesContainer maxWidth="md">
       {allCourses.map((course, index) => (
-        <CourseItemRemove key={index} cours={course.group_id} memberId={course._id} />
+        <CourseItemRemove key={index} cours={course.group_id} memberId={course._id}/>
       ))}
     </CoursesContainer>
   );
 
 });
 
-export default MyCourses;
+export default RequestCourses;

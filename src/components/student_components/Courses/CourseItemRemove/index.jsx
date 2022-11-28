@@ -1,10 +1,10 @@
 import React from "react"
-import { CourseHeader, CourseText, CourseFooter } from "./styles"
+import { CourseHeader, CourseText, CourseFooter } from "../styles"
 import { styled } from "@mui/material/styles"
 import Paper from "@mui/material/Paper"
 import IconButton from "@mui/material/IconButton"
-import { member_remove } from "../../../utils/API_urls"
-import axios from "../../../utils/baseUrl"
+import { member_remove } from "../../../../utils/API_urls"
+import axios from "../../../../utils/baseUrl"
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
 
 const CourseInfo = styled(Paper)(({ theme }) => ({

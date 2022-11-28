@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import ModeEditOutlineRoundedIcon from "@mui/icons-material/ModeEditOutlineRounded";
 import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
 import TransitEnterexitRoundedIcon from "@mui/icons-material/TransitEnterexitRounded";
-import { CourseHeader, CourseText, CourseFooter } from "./styles";
+import { CourseHeader, CourseText, CourseFooter } from "../styles";
 import Input from "@mui/material/Input";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
@@ -33,9 +33,21 @@ export default function CourseItem({ cours }) {
 }
 
 export const CourseItemInfo = ({ cours, edit, setEdit }) => {
+  
   return (
     <CourseInfo>
-      <CourseHeader>{cours.group_name}</CourseHeader>
+      <Link 
+        // to="course"
+        to={{
+          pathname: "/teacher/course",
+          search: `?course_id=${cours._id}`,
+          state: cours
+        }}
+      >
+        <CourseHeader>
+          {cours.group_name}
+        </CourseHeader>
+      </Link>
       <CourseText>{cours.group_text}</CourseText>
       <CourseFooter>
         <p>
@@ -57,7 +69,6 @@ export const CourseItemInfo = ({ cours, edit, setEdit }) => {
 
 export const CourseItemEdit = ({ cours, edit, setEdit }) => {
   return (
-    <Link to="teacher/course">
       <CourseInfo>
         <Input
           defaultValue={cours.group_name}
@@ -98,6 +109,5 @@ export const CourseItemEdit = ({ cours, edit, setEdit }) => {
           </div>
         </CourseFooter>
       </CourseInfo>
-    </Link>
   );
 };

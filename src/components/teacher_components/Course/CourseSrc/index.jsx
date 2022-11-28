@@ -27,7 +27,6 @@ export default function CourseSrc() {
   );
 }
 
-
 export const CourseSrcItem = () => {
     const [open, setOpen] = useState(false)
     const actions = [

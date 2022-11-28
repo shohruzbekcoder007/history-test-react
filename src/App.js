@@ -1,18 +1,18 @@
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
-import Main from "./components/common_components/Main";
-import SignIn from "./components/common_components/SignIn";
-import SignUp from "./components/common_components/SignUp";
-import Courses from "./components/teacher_components/Courses";
-import CoursesStudent from "./components/student_components/Courses";
-import StudentMain from "./components/student_components/Main";
-import TeacherMain from "./components/teacher_components/Main";
-import Students from "./components/teacher_components/Students";
+import React from "react"
+import { useSelector } from "react-redux"
+import CssBaseline from "@mui/material/CssBaseline"
+import { ThemeProvider } from "@mui/material/styles"
+import {SocketContext, socket} from './context/socket'
+import Main from "./components/common_components/Main"
+import { Routes, Route, Navigate } from "react-router-dom"
+import SignIn from "./components/common_components/SignIn"
+import SignUp from "./components/common_components/SignUp"
+import Courses from "./components/teacher_components/Courses"
+import StudentMain from "./components/student_components/Main"
+import TeacherMain from "./components/teacher_components/Main"
+import Students from "./components/teacher_components/Students"
 import TeacherCourse from "./components/teacher_components/Course"
-import {SocketContext, socket} from './context/socket';
+import CoursesStudent from "./components/student_components/Courses"
 
 function App() {
   const theme = useSelector((state) => state.theme);
