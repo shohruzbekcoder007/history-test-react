@@ -38,11 +38,8 @@ export const CourseItemInfo = ({ cours, edit, setEdit }) => {
     <CourseInfo>
       <Link 
         // to="course"
-        to={{
-          pathname: "/teacher/course",
-          search: `?course_id=${cours._id}`,
-          state: cours
-        }}
+        to="/teacher/course"
+        state={{ course: cours }}
       >
         <CourseHeader>
           {cours.group_name}

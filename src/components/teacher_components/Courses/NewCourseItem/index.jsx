@@ -43,7 +43,6 @@ export function NewCourseItem({ newCourse, setNewCourse, addCourse, setAddCourse
           );
           setAddCourse(!addCourse)
           setNewCourse(!newCourse)
-          console.log(response.data)
           
         })
         .catch((error) => {
