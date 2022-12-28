@@ -1,16 +1,18 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import { useDispatch } from 'react-redux';
-import { setDarkTheme, setLightTheme } from '../../../redux/action/themeActions';
+import * as React from 'react'
+import { styled, alpha } from '@mui/material/styles'
+import Button from '@mui/material/Button'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import Divider from '@mui/material/Divider'
+import ArchiveIcon from '@mui/icons-material/Archive'
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import { useDispatch } from 'react-redux'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
+import { setDarkTheme, setLightTheme } from '../../../redux/action/themeActions'
+import listLanguage from "./language.json"
+import { useSelector } from "react-redux"
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -55,7 +57,9 @@ const StyledMenu = styled((props) => (
 
 export default function ThemeMenu() {
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const [lightMode, setLightMode] = React.useState(true)
+  const language = useSelector((state) => state.language)
   const dispatch = useDispatch()
 
   const open = Boolean(anchorEl);
@@ -80,7 +84,7 @@ export default function ThemeMenu() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        Options
+        {lightMode?<LightModeIcon/>:<DarkModeIcon/>}
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -91,22 +95,22 @@ export default function ThemeMenu() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={(event) => {dispatch(setDarkTheme()); handleClose(event)}} disableRipple>
+        <MenuItem onClick={(event) => {dispatch(setDarkTheme()); handleClose(event); setLightMode(false)}} disableRipple>
           <DarkModeIcon />
-          Dark mode
+          {listLanguage.dark_mode[language]}
         </MenuItem>
-        <MenuItem onClick={(event) => {dispatch(setLightTheme()); handleClose(event)}} disableRipple>
+        <MenuItem onClick={(event) => {dispatch(setLightTheme()); handleClose(event); setLightMode(true)}} disableRipple>
           <LightModeIcon />
-          Light mode
+          {listLanguage.light_mode[language]}
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
           <ArchiveIcon />
-          Archive
+          {listLanguage.archive[language]}
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
           <MoreHorizIcon />
-          More
+          {listLanguage.more[language]}
         </MenuItem>
       </StyledMenu>
     </div>

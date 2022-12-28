@@ -6,7 +6,7 @@ import CourseStudents from "../CourseStudents";
 
 export default function TabsStudents({group_id}) {
     return (
-        <TabsUnstyled defaultValue={0}>
+        <TabsUnstyled defaultValue={0} style={{padding: '10px'}}>
             <TabsList>
                 <Tab>Guruhga azolar</Tab>
                 <Tab>Azolikni kutayotganlar</Tab>

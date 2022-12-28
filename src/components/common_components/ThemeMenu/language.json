@@ -1,0 +1,26 @@
+{
+    "dark_mode": {
+        "uz": "Qorong'u rejim",
+        "ru": "Темный режим",
+        "eng": "Dark mode",
+        "uzc": "Қоронғу режим"
+    },
+    "light_mode": {
+        "uz": "Kun rejimi",
+        "ru": "Легкий режим",
+        "eng": "Light mode",
+        "uzc": "Кун режими"
+    },
+    "archive": {
+        "uz": "Arxiv",
+        "ru": "Архив",
+        "eng": "Archive",
+        "uzc": "Архив"
+    },
+    "more": {
+        "uz": "Ko'proq",
+        "ru": "Более",
+        "eng": "More",
+        "uzc": "Кўпроқ"
+    }
+}

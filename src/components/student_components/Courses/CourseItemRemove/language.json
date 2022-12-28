@@ -1,0 +1,14 @@
+{
+    "student": {
+        "uz": "ta student",
+        "ru": "студента",
+        "eng": "students",
+        "uzc": "та студент"
+    },
+    "manual": {
+        "uz": "ta qo'llanma",
+        "ru": "руководства",
+        "eng": "manuals",
+        "uzc": "та қўлланма"
+    }
+}

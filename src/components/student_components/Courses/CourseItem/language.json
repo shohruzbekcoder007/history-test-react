@@ -1,0 +1,26 @@
+{
+    "membership": {
+        "uz": "Ushbu guruhga azolik bildirgansiz!!!",
+        "ru": "Вы оскорбили эту группу!!!",
+        "eng": "You insulted this group!!!",
+        "uzc": "Ушбу гуруҳга азолик билдиргансиз!!!"
+    },
+    "information": {
+        "uz": "Ma'lumot",
+        "ru": "Информация",
+        "eng": "Information",
+        "uzc": "Маълумот"
+    },
+    "student": {
+        "uz": "ta student",
+        "ru": "студента",
+        "eng": "students",
+        "uzc": "та студент"
+    },
+    "manual": {
+        "uz": "ta qo'llanma",
+        "ru": "руководства",
+        "eng": "manuals",
+        "uzc": "та қўлланма"
+    }
+}

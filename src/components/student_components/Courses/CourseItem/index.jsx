@@ -10,7 +10,9 @@ import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import {SocketContext} from '../../../../context/socket';
+import {SocketContext} from '../../../../context/socket'
+import { useSelector } from "react-redux"
+import listLanguage from "./language.json"
 
 
 const CourseInfo = styled(Paper)(({ theme }) => ({
@@ -22,8 +24,9 @@ const CourseInfo = styled(Paper)(({ theme }) => ({
 
 export default function CourseItem({ course }) {
 
-  const [open, setOpen] = React.useState(false);
-  const socket = useContext(SocketContext);
+  const [open, setOpen] = React.useState(false)
+  const socket = useContext(SocketContext)
+  const language = useSelector((state) => state.language)
 
 
   const handleClose = () => {
@@ -68,7 +71,7 @@ export default function CourseItem({ course }) {
       <CourseText>{course.group_text}</CourseText>
       <CourseFooter>
         <p>
-          <span>{course.number_of_students}</span> ta student <span>{course.number_of_maretials}</span> ta qo'llanma
+          <span>{course.number_of_students}</span> {listLanguage.student[language]} <span>{course.number_of_maretials}</span> {listLanguage.manual[language]}
         </p>
         <IconButton
           color="primary"
@@ -88,11 +91,11 @@ export default function CourseItem({ course }) {
     aria-describedby="alert-dialog-description"
   >
     <DialogTitle id="alert-dialog-title">
-      {"Ma'lumot"}
+      {listLanguage.information[language]}
     </DialogTitle>
     <DialogContent>
       <DialogContentText id="alert-dialog-description">
-        Ushbu guruhga azolik bildirgansiz!!!
+        {listLanguage.membership[language]}
       </DialogContentText>
     </DialogContent>
   </Dialog>

@@ -5,10 +5,9 @@ import ListItem from "@mui/material/ListItem"
 import Typography from "@mui/material/Typography"
 import ListItemText from "@mui/material/ListItemText"
 import ListItemAvatar from "@mui/material/ListItemAvatar"
-import ListItemButton from '@mui/material/ListItemButton';
+// import ListItemButton from '@mui/material/ListItemButton'
 import axios from '../../../../utils/baseUrl'
 import { groupstudents } from '../../../../utils/API_urls'
-
 
 export default function CourseStudents({ group_id, status }) {
 
@@ -32,16 +31,16 @@ export default function CourseStudents({ group_id, status }) {
         console.log({ errorMessage: error.toString() });
         console.error("There was an error!", error);
       });
-  }, [])
+  }, [group_id, status])
 
   return (
     <List>
       {
         students.map(student => {
           return (
-            <ListItemButton alignItems="flex-start" sx={{ boxShadow: 3, mb: 1, borderRadius: 2 }} key={student._id}>
+            <ListItem alignItems="flex-start" sx={{ boxShadow: 3, mb: 1, borderRadius: 2 }} key={student._id}>
               <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Avatar alt="Remy Sharp" src={student.student_id.profile_img} />
               </ListItemAvatar>
               <ListItemText
                 primary={student.student_id.name}
@@ -59,7 +58,7 @@ export default function CourseStudents({ group_id, status }) {
                   </React.Fragment>
                 }
               />
-            </ListItemButton>
+            </ListItem>
           )
         })
       }

@@ -8,7 +8,7 @@ import {
   StyleUser,
   StyleChip,
   StyleUserAvatar,
-  SidebarImageContainer,
+  // SidebarImageContainer,
 } from "./styles";
 import { useSelector } from "react-redux";
 import TeacherSidebarList from "../../teacher_components/TeacherSidebarList";
@@ -20,7 +20,7 @@ import axios from "../../../utils/baseUrl";
 
 export default function ComponentSidebar() {
   const user = useSelector((state) => state.user);
-  const [imgUrl, setImgUrl] = useState(user?.profile?.image_url);
+  const [imgUrl, setImgUrl] = useState(user?.profile_img);
 
   const handleChange = async (selectorFiles) => {
     const formData = new FormData();
@@ -54,7 +54,7 @@ export default function ComponentSidebar() {
                   aria-label="upload picture"
                   component="label"
                 >
-                  {imgUrl||user?.profile?.image_url ? (
+                  {imgUrl || user?.profile_img ? (
                     <>
                       <input
                           hidden
@@ -62,7 +62,7 @@ export default function ComponentSidebar() {
                           type="file"
                           onChange={(e) => handleChange(e.target.files)}
                         />
-                      <StyleUserAvatar alt="Remy Sharp" src={imgUrl||user?.profile?.image_url} />
+                      <StyleUserAvatar alt="Remy Sharp" src={imgUrl||user?.profile_img} />
                     </>
                   ) : (
                     <>

@@ -13,6 +13,11 @@ import TeacherMain from "./components/teacher_components/Main"
 import Students from "./components/teacher_components/Students"
 import TeacherCourse from "./components/teacher_components/Course"
 import CoursesStudent from "./components/student_components/Courses"
+import StudentCourse from "./components/student_components/Course"
+import CourseAndTeacherChat from "./components/teacher_components/CourseAndTeacherChat"
+import CourseAndStudentChat from "./components/student_components/CourseAndStudentChat"
+import StudentChat from "./components/student_components/StudentChat"
+import TeacherChat from "./components/teacher_components/TeacherChat"
 
 function App() {
   const theme = useSelector((state) => state.theme);
@@ -28,10 +33,17 @@ function App() {
               <Route path="student" element={<StudentMain/>}>
                 <Route index element={<CoursesStudent />} />
                 <Route path="nimadir" element={<p>nimadir</p>} />
+                <Route path="course" element={<CourseAndStudentChat/>}>
+                  <Route index element={<StudentCourse />} />
+                  <Route path="chat" element={<StudentChat/>} />
+                </Route>
               </Route>
               <Route path="teacher" element={<TeacherMain />}>
                 <Route index element={<Courses />} />
-                <Route path="course" element={<TeacherCourse />} />
+                <Route path="course" element={<CourseAndTeacherChat/>}>
+                  <Route index element={<TeacherCourse />} />
+                  <Route path="chat" element={<TeacherChat />} />
+                </Route>
                 <Route path="students" element={<Students/>} />
                 <Route path="natijalar" element={<p>natijalar</p>} />
               </Route>

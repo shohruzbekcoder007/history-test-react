@@ -11,6 +11,9 @@ export const user_teachers = `/user/teachers`
 
 // upload file
 export const profil_img = `/file/uploadimg`
+export const sendimage = `/file/uploadimgmessage`
+export const sendvideo = `/file/uploadvideomessage`
+export const sendfile = `/file/uploadfilemessage`
 
 // question
 export const question = `/question`
@@ -51,3 +54,9 @@ export const resforstudent = `/groupmember/resforstudent`
 export const groupstudents = `/groupmember/groupstudents`
 export const grouplesson = `/grouplesson`
 export const grouplesson_lessons = `/grouplesson/lessons`
+export const grouplesson_lessonsforstudent = `/grouplesson/lessonsforstudent`
+
+// message group 
+export const messagegroup = `/messagegroup/`
+export const getmessagegroup = `/messagegroup/`
+export const getlastmessages = `/messagegroup/lastmessages`

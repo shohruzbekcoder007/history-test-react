@@ -6,6 +6,9 @@ import IconButton from "@mui/material/IconButton"
 import { member_remove } from "../../../../utils/API_urls"
 import axios from "../../../../utils/baseUrl"
 import PersonRemoveAlt1Icon from '@mui/icons-material/PersonRemoveAlt1'
+import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
+import listLanguage from "./language.json"
 
 const CourseInfo = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -15,6 +18,8 @@ const CourseInfo = styled(Paper)(({ theme }) => ({
 
 
 export default function CourseItem({ cours, memberId }) {
+
+  const language = useSelector((state) => state.language)
 
   const removeCourse = () => {
     axios
@@ -44,11 +49,16 @@ export default function CourseItem({ cours, memberId }) {
   return (
     <>
     <CourseInfo>
-      <CourseHeader>{cours.group_name}</CourseHeader>
+    <Link 
+        to="/student/course"
+        state={{ course: cours }}
+      >
+        <CourseHeader>{cours.group_name}</CourseHeader>
+      </Link>
       <CourseText>{cours.group_text}</CourseText>
       <CourseFooter>
         <p>
-          <span>{cours.number_of_students}</span> ta student <span>{cours.number_of_maretials}</span> ta qo'llanma
+          <span>{cours.number_of_students}</span> {listLanguage.student[language]} <span>{cours.number_of_maretials}</span> {listLanguage.manual[language]}
         </p>
         <IconButton
           color="primary"

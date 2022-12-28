@@ -37,7 +37,7 @@ export default function OldLesssons({ open, handleClose }) {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
+              Menda bor darslar ro'yxati
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               save
@@ -45,11 +45,11 @@ export default function OldLesssons({ open, handleClose }) {
           </Toolbar>
         </AppBar>
         <List>
-          <ListItem button>
+          <ListItem>
             <ListItemText primary="Phone ringtone" secondary="Titania" />
           </ListItem>
           <Divider />
-          <ListItem button>
+          <ListItem>
             <ListItemText
               primary="Default notification ringtone"
               secondary="Tethys"
