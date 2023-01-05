@@ -12,9 +12,9 @@ import TextSnippetIcon from '@mui/icons-material/TextSnippet'
 import Box from "@mui/material/Box"
 import { CourseSrcWrapper } from "./styles"
 import QuizIcon from '@mui/icons-material/Quiz'
+import NewTest from "../NewTest"
 
 export default function CourseSrc({ lessons }) {
-
   return (
       <CourseSrcWrapper>
         {
@@ -27,13 +27,27 @@ export default function CourseSrc({ lessons }) {
 }
 
 export const CourseSrcItem = ({title, description}) => {
+
   const [open, setOpen] = useState(false)
+  const [openTest, setOpenTest] = useState(false);
+
+  const handleOpen = () => {
+    setOpenTest(true);
+  };
+
+  const handleClose = () => {
+    setOpenTest(false);
+  };
+  
   const actions = [
     { icon: <TextSnippetIcon />, name: "File" },
-    { icon: <QuizIcon />, name: "Quiz" },
+    { icon: <QuizIcon onClick={handleOpen}/>, name: "Quiz" },
     { icon: <PostAddIcon />, name: "Post" }
   ];
+
   return (
+    <>
+    <NewTest open={openTest} handleClose={handleClose}/>
     <Accordion
       expanded={open}
       onChange={(_) => { setOpen(!open) }}
@@ -59,7 +73,6 @@ export const CourseSrcItem = ({title, description}) => {
             </Typography>:
             <></>
         }
-        
       </AccordionDetails>
       <Box
         sx={{ transform: "translateZ(0px)", flexGrow: 1 }}
@@ -80,5 +93,6 @@ export const CourseSrcItem = ({title, description}) => {
         </SpeedDial>
       </Box>
     </Accordion>
+    </>
   )
 }
